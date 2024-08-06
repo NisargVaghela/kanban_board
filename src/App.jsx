@@ -19,13 +19,17 @@ function App() {
 	)
 
 	useEffect(() => {
+		fetchBoards()
+	}, [])
+
+	const fetchBoards = () => {
 		fetch(`${BaseURL}/get-boards`)
 			.then((res) => res.json())
 			.then((data) => {
 				console.log(data)
 			})
 			.catch((err) => console.log(err))
-	}, [])
+	}
 
 	const defaultDark = window.matchMedia('(prefers-colors-scheme: dark)').matches
 	const [theme, setTheme] = useLocalStorage(
